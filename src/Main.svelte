@@ -1,7 +1,7 @@
 <script>
   import Notifications from "svelte-notifications";
 
-  import App from "./App.svelte";
+  import App from "./views/App.svelte";
 </script>
 
 <Notifications>

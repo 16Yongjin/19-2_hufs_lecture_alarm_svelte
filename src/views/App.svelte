@@ -1,13 +1,12 @@
 <script>
   import { onMount } from "svelte";
-  import Notifications from "svelte-notifications";
-  import { myAlarms } from "./stores.js";
-  import Navbar from "./Navbar.svelte";
-  import AlarmCard from "./AlarmCard.svelte";
+  import Notifications, { getNotificationsContext } from "svelte-notifications";
+  import { myAlarms } from "../stores";
+  import Navbar from "../components/Navbar.svelte";
+  import AlarmCard from "../components/AlarmCard.svelte";
   import AddAlarmModal from "./AddAlarmModal.svelte";
-  import serverApi from "./ServerApi";
-  import { messaging } from "./firebase";
-  import { getNotificationsContext } from "svelte-notifications";
+  import serverApi from "../utils/ServerApi";
+  import { messaging } from "../utils/firebase";
 
   const { addNotification } = getNotificationsContext();
 
@@ -52,7 +51,7 @@
     if (document.visibilityState === "visible") loadMyAlarms();
   });
 
-  let activeModal = false;
+  let activeModal = true;
 
   const activateAddModal = () => {
     activeModal = true;
@@ -65,7 +64,6 @@
   const onAlarmDelete = async e => {
     const lectureId = e.detail.id;
     const token = await messaging.getToken();
-
     const alarms = await serverApi.deleteAlarm(token, lectureId);
     myAlarms.set(alarms);
     notifyDelete();

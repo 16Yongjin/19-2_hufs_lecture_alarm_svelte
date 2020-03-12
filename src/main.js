@@ -1,17 +1,17 @@
-import App from './Main.svelte'
-import fontawesome from '@fortawesome/fontawesome'
-import solid from '@fortawesome/fontawesome-free-solid'
-import 'bulma/css/bulma.css'
-import 'animate.css/animate.css'
-import './firebase'
+import App from "./Main.svelte";
+import fontawesome from "@fortawesome/fontawesome";
+import solid from "@fortawesome/fontawesome-free-solid";
+import "bulma/css/bulma.css";
+import "animate.css/animate.css";
+import "./utils/firebase";
 
-fontawesome.library.add(solid)
+fontawesome.library.add(solid);
 
 const app = new App({
   target: document.body,
   props: {
-    name: 'world'
+    name: "world"
   }
-})
+});
 
-export default app
+export default app;
